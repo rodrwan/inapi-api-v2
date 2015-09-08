@@ -29,18 +29,16 @@ colors.setTheme({
 server = new Hapi.Server();
 server.connection({
   'host': '0.0.0.0',
-  'port': process.env.PORT
-}, {
-  'timeout': {
-    'server': true
-  }
-}, {
-  'payload': {
-    'timeout': 120000
-  }
-}, {
-  'socket': {
-    'timeout': 120000
+  'port': process.env.PORT,
+  'routes': {
+    'cors': true,
+    'payload': {
+      'timeout': 120000
+    },
+    'timeout': {
+      'server': 120000,
+      'socket': 130000
+    }
   }
 });
 
