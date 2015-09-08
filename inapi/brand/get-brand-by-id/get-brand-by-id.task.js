@@ -63,7 +63,8 @@ GetBrandById.main(function (task, http, params) {
       'Content-Type': 'application/json; charset=UTF-8',
       'X-Requested-With': 'XMLHttpRequest'
     },
-    'json': true
+    'json': true,
+    'timeout': 120000
   });
 
   kind = params.kind;
