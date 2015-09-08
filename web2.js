@@ -31,7 +31,7 @@ PORT = process.env.PORT || 8000;
 app.set('port', PORT);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': false}));
-app.use(timeout(120000));
+app.use(timeout('3m'));
 app.use(haltOnTimedout);
 
 function haltOnTimedout (req, res, next) {
