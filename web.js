@@ -30,6 +30,14 @@ server = new Hapi.Server();
 server.connection({
   'host': '0.0.0.0',
   'port': process.env.PORT
+}, {
+  'timeout': {
+    'server': true
+  }
+}, {
+  'payload': {
+    'timeout': 120000
+  }
 });
 
 // Add the route
