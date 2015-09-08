@@ -33,11 +33,11 @@ server.connection({
   'routes': {
     'cors': true,
     'payload': {
-      'timeout': 120000
+      'timeout': 90000
     },
     'timeout': {
-      'server': 120000,
-      'socket': 130000
+      'server': 90000,
+      'socket': 100000
     }
   }
 });
