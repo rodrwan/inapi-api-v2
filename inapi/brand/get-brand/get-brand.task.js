@@ -55,7 +55,8 @@ getBrandExact.main(function (task, http, params) {
       'Content-Type': 'application/json; charset=UTF-8',
       'X-Requested-With': 'XMLHttpRequest'
     },
-    'json': true
+    'json': true,
+    'timeout': 120000
   });
 
   brand = params.brand;
@@ -118,7 +119,7 @@ getBrandExact.main(function (task, http, params) {
       if (result.ErrorMessage.indexOf(str2find) >= 0) {
         task.sucess('error');
       }
-    } else if (result.length === 0) {
+    } else if (result.Marcas.length === 0) {
       task.success(count);
     } else {
       var newHash = result.Hash;

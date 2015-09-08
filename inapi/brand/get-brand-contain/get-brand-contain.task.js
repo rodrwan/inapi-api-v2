@@ -121,7 +121,7 @@ getBrandContain.main(function (task, http, params) {
       if (result.ErrorMessage.indexOf(str2find) >= 0) {
         task.sucess('error');
       }
-    } else if (result.length === 0) {
+    } else if (result.Marcas.length === 0) {
       task.success(count);
     } else {
       var newHash = result.Hash;
