@@ -29,7 +29,7 @@ colors.setTheme({
 server = new Hapi.Server();
 server.connection({
   'host': '0.0.0.0',
-  'port': proccess.env.PORT
+  'port': process.env.PORT
 });
 
 // Add the route
