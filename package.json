@@ -1,0 +1,23 @@
+{
+  "name": "inapi-web-service",
+  "version": "0.0.1",
+  "description": "web service to extract data from inapi services.",
+  "main": "web.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "scrape",
+    "inapi",
+    "brands"
+  ],
+  "author": "Rodrigo Fuenzalida <rf@finciero.com>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "hapi": "^9.0.3",
+    "lodash": "^3.10.1",
+    "q": "^1.4.1",
+    "yakuza": "^1.0.7"
+  }
+}
