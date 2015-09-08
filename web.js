@@ -34,10 +34,6 @@ server.connection({
   'timeout': {
     'server': true
   }
-}, {
-  'payload': {
-    'timeout': 120000
-  }
 });
 
 // Add the route
@@ -73,7 +69,8 @@ server.route({
     });
 
     job.run();
-  }
+  },
+  'timeout': 120000
 });
 
 server.route({
