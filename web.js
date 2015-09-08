@@ -32,7 +32,8 @@ server.connection({
   'port': process.env.PORT
 }, {
   'timeout': {
-    'server': true
+    'server': true,
+    'socket': false
   }
 }, {
   'payload': {
