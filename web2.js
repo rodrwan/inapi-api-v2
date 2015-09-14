@@ -119,3 +119,9 @@ server = http.createServer(app);
 server.listen(PORT);
 
 console.log('----- Listening in port ' + PORT + ' -----');
+
+server.on('connection', function(socket) {
+  console.log("A new connection was made by a client.");
+  socket.setTimeout(30 * 5000);
+  // 30 second timeout. Change this as you see fit.
+});
