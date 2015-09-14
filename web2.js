@@ -1,6 +1,6 @@
 'use strict';
 
-var Yakuza, colors, express, bodyParser, app, PORT, timeout, http;
+var Yakuza, colors, express, bodyParser, app, PORT, timeout, http, server;
 
 // here, require the scrapers
 require('./inapi/inapi.scraper');
@@ -115,7 +115,7 @@ app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
 //   }
 // });
 
-// http.createServer(app).listen(PORT)
-app.listen(app.get('port'), function () {
-  console.log('Listening on: http://localhost:' + app.get('port'));
-});
+server = http.createServer(app);
+server.listen(PORT);
+
+console.log('----- Listening in port ' + port + ' -----');

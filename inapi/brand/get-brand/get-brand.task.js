@@ -56,7 +56,7 @@ getBrandExact.main(function (task, http, params) {
       'X-Requested-With': 'XMLHttpRequest'
     },
     'json': true,
-    'timeout': 120000
+    'open_timeout': 120000
   });
 
   brand = params.brand;
