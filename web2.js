@@ -45,6 +45,7 @@ app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
   var job, params, brand2find;
 
   if (req.timeout) {
+    console.log(req.timeout);
     return;
   }
 
