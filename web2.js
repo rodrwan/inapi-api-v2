@@ -7,7 +7,7 @@ require('./inapi/inapi.scraper');
 
 Yakuza = require('yakuza');
 colors = require('colors');
-express = require('connect');
+express = require('express');
 http = require('http');
 bodyParser = require('body-parser');
 timeout = require('connect-timeout');
@@ -29,12 +29,10 @@ colors.setTheme({
 app = express();
 PORT = process.env.PORT || 8000;
 
-// app.set('port', PORT);
-// app.use(timeout('5m'));
-// app.use(bodyParser.json());
-// app.use(haltOnTimedout);
-// app.use(bodyParser.urlencoded({'extended': false}));
-// app.use(haltOnTimedout);
+app.set('port', PORT);
+app.use(timeout('5m'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({'extended': false}));
 
 function haltOnTimedout (req, res, next) {
   if (!req.timedout) {
@@ -43,7 +41,7 @@ function haltOnTimedout (req, res, next) {
 }
 
 // routes definition
-app.use('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, function (req, result) {
+app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, function (req, result, next) {
   var job, params, brand2find;
 
   brand2find = req.params.brand;
@@ -110,7 +108,7 @@ app.use('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
 //   }
 // });
 
-http.createServer(app).listen(PORT)
-// app.listen(app.get('port'), function () {
-//   console.log('Listening on: http://localhost:' + app.get('port'));
-// });
+// http.createServer(app).listen(PORT)
+app.listen(app.get('port'), function () {
+  console.log('Listening on: http://localhost:' + app.get('port'));
+});
