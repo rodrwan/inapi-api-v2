@@ -42,7 +42,7 @@ function haltOnTimedout (req, res, next) {
 }
 
 // routes definition
-app.get('/inapi/:brand', haltOnTimedout, function (req, result) {
+app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, function (req, result) {
   var job, params, brand2find;
 
   brand2find = req.params.brand;
