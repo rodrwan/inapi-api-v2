@@ -1,6 +1,6 @@
 'use strict';
 
-var Yakuza, colors, express, bodyParser, app, PORT, timeout, http, server;
+var Yakuza, colors, express, bodyParser, app, PORT, timeout, http, server, allowCrossDomain;
 
 // here, require the scrapers
 require('./inapi/inapi.scraper');
@@ -26,6 +26,15 @@ colors.setTheme({
   'error': 'red'
 });
 
+// CORS middleware
+allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+};
+
 app = express();
 PORT = process.env.PORT || 8000;
 
@@ -33,6 +42,7 @@ app.set('port', PORT);
 app.use(timeout('5m'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': false}));
+app.use(allowCrossDomain);
 
 function haltOnTimedout (req, res, next) {
   if (!req.timedout) {
