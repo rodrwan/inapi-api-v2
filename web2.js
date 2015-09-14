@@ -118,4 +118,4 @@ app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
 server = http.createServer(app);
 server.listen(PORT);
 
-console.log('----- Listening in port ' + port + ' -----');
+console.log('----- Listening in port ' + PORT + ' -----');
