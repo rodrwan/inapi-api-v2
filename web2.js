@@ -29,9 +29,10 @@ app = express();
 PORT = process.env.PORT || 8000;
 
 app.set('port', PORT);
+app.use(timeout('5m'));
 app.use(bodyParser.json());
+app.use(haltOnTimedout);
 app.use(bodyParser.urlencoded({'extended': false}));
-app.use(timeout('3m'));
 app.use(haltOnTimedout);
 
 function haltOnTimedout (req, res, next) {
@@ -41,7 +42,7 @@ function haltOnTimedout (req, res, next) {
 }
 
 // routes definition
-app.get('/inapi/:brand', function (req, result) {
+app.get('/inapi/:brand', haltOnTimedout, function (req, result) {
   var job, params, brand2find;
 
   brand2find = req.params.brand;
