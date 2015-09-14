@@ -44,6 +44,10 @@ function haltOnTimedout (req, res, next) {
 app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, function (req, result, next) {
   var job, params, brand2find;
 
+  if (req.timeout) {
+    return;
+  }
+
   brand2find = req.params.brand;
   console.log(req.query);
   console.log('Search: ' + brand2find);
@@ -64,7 +68,9 @@ app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
     console.log('Something failed'.error);
     console.log('Error is: '.error);
     console.log(res);
-    result.json(res);
+    if (res) {
+      return next(res);
+    }
   });
 
   job.on('task:*:success', function (task) {
