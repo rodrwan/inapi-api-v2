@@ -42,7 +42,7 @@ GetBrandById.hooks({
   // if something fail, make 3 retries.
   'onFail': function (task) {
     // 3 retries, then stop.
-    if (task.runs === 1) {
+    if (task.runs === 3) {
       return;
     }
     task.rerun();
