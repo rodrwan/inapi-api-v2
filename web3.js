@@ -79,9 +79,12 @@ app.get('/inapi/:brand', timeout('5m'), bodyParser.json(), haltOnTimedout, funct
     console.log('Something failed'.error);
     console.log('Error is: '.error);
     console.log(res);
-    if (res) {
-      return next(res);
-    }
+
+    result.json({
+      'error': res.error,
+      'message': 'Something went wrong'
+    });
+    return;
   });
 
   job.on('task:*:success', function (task) {
@@ -113,11 +116,11 @@ io.on('connection', function (socket) {
     job.routine('GetBrandExact');
 
     job.on('job:fail', function (res) {
-      console.log('Something failed'.error);
+      console.log('Something failed with exact brand in socket method'.error);
       console.log('Error is: '.error);
       console.log(res);
       if (res) {
-        socket.emit('brandError', res);
+        socket.emit('brandError', res.error);
       }
     });
 
@@ -142,11 +145,11 @@ io.on('connection', function (socket) {
     job.routine('GetBrandContain');
 
     job.on('job:fail', function (res) {
-      console.log('Something failed'.error);
+      console.log('Something failed with contained brand in socket method'.error);
       console.log('Error is: '.error);
       console.log(res);
       if (res) {
-        socket.emit('brandError', res);
+        socket.emit('brandError', res.error);
       }
     });
 
@@ -158,37 +161,3 @@ io.on('connection', function (socket) {
     job.run();
   });
 });
-
-// server.route({
-//   'method': 'GET',
-//   'path': '/inapi/{brand}/{solicitud}',
-//   'handler': function (request, reply) {
-//     var job, params,
-//         brand = request.params.brand,
-//         solicitud = request.params.solicitud;
-
-//     console.log('Search: ' + brand);
-//     params = {
-//       'brand': brand,
-//       'solicitud': solicitud
-//     };
-
-//     job = Yakuza.job('Inapi', 'Brand', params);
-//     job.routine('GetBrandById');
-
-//     job.on('job:fail', function (res) {
-//       console.log('Something failed'.error);
-//       console.log('Error is: '.error);
-//       reply(res).header('Content-Type', 'application/json');
-//     });
-
-//     job.on('task:*:success', function (task) {
-//       console.log('Search done!');
-//       reply(task.data).header('Content-Type', 'application/json');
-//     });
-
-//     job.run();
-//   }
-// });
-
-
