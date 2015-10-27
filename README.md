@@ -20,3 +20,5 @@ Esto ejecutara un web service que tiene un end-point `GET` para hacer las consul
 Además contiene un sub modulo con conexión a websocket para hacer llamadas asincronas.
 
 ## End-points
+
+continuara...
