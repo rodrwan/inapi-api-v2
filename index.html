@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://marcalegal-api.herokuapp.com/socket.io/socket.io.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var socket = io('http://marcalegal-api.herokuapp.com/');
+      socket.emit('brand:exact', 'picnic');
+      socket.emit('brand:contain', 'picnic');
+
+      socket.on('brandError', function (data) {
+        document.getElementById('error').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      });
+
+      socket.on('brandExactResult', function (data) {
+        document.getElementById('exact').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      });
+
+      socket.on('brandContainResult', function (data) {
+        document.getElementById('contain').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      });
+    })();
+  </script>
+</head>
+<body>
+<div id="exact"></div>
+<hr>
+<div id="contain"></div>
+<hr>
+<div id="error"></div>
+</body>
+</html>
