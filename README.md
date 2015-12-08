@@ -13,7 +13,7 @@ $ npm install
 Luego de que las dependencias son instaladas, correr en la terminal:
 
 ```sh
-node web3.js
+$ node web3.js
 ```
 
 Esto ejecutara un web service que tiene un end-point `GET` para hacer las consultas hacia inapi en formato REST.
